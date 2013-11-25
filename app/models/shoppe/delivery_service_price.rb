@@ -27,5 +27,8 @@ module Shoppe
     # @param weight [BigDecimal] the weight of the order
     scope :for_weight, -> weight { where("min_weight <= ? AND max_weight >= ?", weight, weight) }
   
+    def default_delivery_service?
+      delivery_service.default? ? 0 : 1
+    end
   end
 end
